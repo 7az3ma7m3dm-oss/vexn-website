@@ -3,42 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08080c" />
 
-  <title>VEXN — Built Different.</title>
-
-  <meta
-    name="description"
-    content="VEXN Esports — competing beyond limits."
-  />
+  <title>BRTX — Gaming Community</title>
 
   <style>
-    /* =========================================================
-       VEXN — COMPLETE WEBSITE
-       ========================================================= */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
     :root {
-      --bg: #060609;
-      --bg-soft: #0a0a0f;
-      --panel: rgba(255, 255, 255, 0.045);
-      --panel-hover: rgba(255, 255, 255, 0.075);
-
+      --bg: #07070b;
+      --bg2: #0b0b11;
+      --card: rgba(255,255,255,.045);
+      --card-hover: rgba(255,255,255,.075);
+      --border: rgba(255,255,255,.09);
       --text: #f5f5f7;
-      --muted: #8d8d99;
-      --muted-2: #5e5e69;
-
-      --line: rgba(255, 255, 255, 0.09);
-
-      --accent: #ffffff;
-      --accent-soft: rgba(255, 255, 255, 0.12);
-
-      --purple: #8b5cf6;
-      --purple-soft: rgba(139, 92, 246, 0.18);
-
-      --green: #55ff9a;
-
-      --radius: 24px;
-
-      --max-width: 1240px;
+      --muted: #85858f;
+      --white: #ffffff;
+      --accent: #8b5cf6;
+      --accent2: #6366f1;
+      --glow: rgba(139,92,246,.35);
     }
 
     * {
@@ -49,1366 +32,897 @@
 
     html {
       scroll-behavior: smooth;
-      background: var(--bg);
+      scroll-padding-top: 90px;
     }
 
     body {
-      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
       background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(139, 92, 246, 0.13),
-          transparent 32%
-        ),
+        radial-gradient(circle at 50% -10%, rgba(110,70,255,.16), transparent 35%),
+        radial-gradient(circle at 0% 40%, rgba(90,50,220,.07), transparent 30%),
         var(--bg);
-
       color: var(--text);
-      font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
       overflow-x: hidden;
       cursor: none;
     }
 
-    a,
-    button {
-      color: inherit;
-      text-decoration: none;
-      cursor: none;
-    }
-
-    button {
-      border: 0;
-      font: inherit;
-    }
-
-    ::selection {
-      background: white;
-      color: black;
-    }
-
-    /* =========================================================
+    /* =========================
        CUSTOM CURSOR
-       ========================================================= */
+    ========================= */
 
-    .cursor-dot {
+    .cursor {
       position: fixed;
-      width: 7px;
-      height: 7px;
-      background: white;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
+      background: white;
       pointer-events: none;
       z-index: 99999;
-
       transform: translate(-50%, -50%);
-      box-shadow:
-        0 0 12px rgba(255,255,255,.8),
-        0 0 30px rgba(139,92,246,.6);
-
-      transition:
-        width .2s ease,
-        height .2s ease,
-        opacity .2s ease;
+      mix-blend-mode: difference;
     }
 
     .cursor-ring {
       position: fixed;
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(255,255,255,.45);
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.6);
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
-
       transform: translate(-50%, -50%);
-
       transition:
-        width .3s cubic-bezier(.16,1,.3,1),
-        height .3s cubic-bezier(.16,1,.3,1),
-        border-color .3s ease,
-        background .3s ease;
+        width .25s ease,
+        height .25s ease,
+        border-color .25s ease,
+        background .25s ease;
     }
 
     body.cursor-hover .cursor-ring {
-      width: 62px;
-      height: 62px;
+      width: 60px;
+      height: 60px;
       border-color: rgba(139,92,246,.8);
       background: rgba(139,92,246,.06);
     }
 
-    body.cursor-hover .cursor-dot {
-      width: 3px;
-      height: 3px;
+    @media (max-width: 800px) {
+      body {
+        cursor: auto;
+      }
+
+      .cursor,
+      .cursor-ring {
+        display: none;
+      }
     }
 
-    /* =========================================================
+    /* =========================
        BACKGROUND
-       ========================================================= */
+    ========================= */
 
     .noise {
       position: fixed;
       inset: 0;
-      z-index: 9990;
       pointer-events: none;
-      opacity: .035;
-
+      z-index: 100;
+      opacity: .025;
       background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     .grid {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .22;
-
+      opacity: .16;
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
       background-size: 70px 70px;
-
-      mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 85%
-      );
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
     }
 
-    .glow {
-      position: fixed;
+    .orb {
+      position: absolute;
       width: 500px;
       height: 500px;
       border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,.18), transparent 65%);
+      filter: blur(30px);
       pointer-events: none;
-      z-index: -1;
-
-      background: rgba(139,92,246,.09);
-      filter: blur(120px);
-
-      transform: translate(-50%, -50%);
     }
 
-    /* =========================================================
-       NAVIGATION
-       ========================================================= */
+    .orb.one {
+      top: 300px;
+      left: -250px;
+    }
 
-    .nav-wrap {
+    .orb.two {
+      top: 1200px;
+      right: -300px;
+      background: radial-gradient(circle, rgba(99,102,241,.14), transparent 65%);
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
       position: fixed;
       top: 18px;
       left: 50%;
       transform: translateX(-50%);
-
-      width: min(calc(100% - 36px), 1120px);
-
-      z-index: 500;
-    }
-
-    nav {
-      height: 68px;
-
+      width: min(1120px, calc(100% - 30px));
+      height: 66px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      padding: 0 14px 0 22px;
-
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 20px;
-
+      padding: 0 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
       background: rgba(8,8,12,.72);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-
-      box-shadow:
-        0 20px 70px rgba(0,0,0,.35),
-        inset 0 1px rgba(255,255,255,.04);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      z-index: 1000;
+      box-shadow: 0 15px 50px rgba(0,0,0,.25);
     }
 
-    .brand {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-
-      font-size: 18px;
+      gap: 11px;
+      text-decoration: none;
+      color: white;
       font-weight: 900;
-      letter-spacing: .22em;
+      letter-spacing: -.04em;
+      font-size: 21px;
     }
 
-    .brand-mark {
+    .logo-box {
       width: 38px;
       height: 38px;
-
       display: grid;
       place-items: center;
+      border-radius: 11px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(145deg, #161620, #0c0c11);
+      box-shadow: inset 0 1px rgba(255,255,255,.08);
+    }
 
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.12),
-          rgba(255,255,255,.025)
-        );
-
-      font-size: 13px;
+    .logo-box span {
+      color: #a78bfa;
       font-weight: 900;
-      letter-spacing: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 7px;
     }
 
     .nav-links a {
-      position: relative;
-
-      color: #9b9ba5;
+      color: #aaaab3;
+      text-decoration: none;
+      padding: 10px 13px;
+      border-radius: 10px;
       font-size: 13px;
       font-weight: 600;
-
-      transition: color .25s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-
-      width: 0;
-      height: 1px;
-
-      background: white;
-
-      transition: width .3s ease;
+      transition: .25s ease;
     }
 
     .nav-links a:hover {
       color: white;
+      background: rgba(255,255,255,.06);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .nav-discord {
+      color: white !important;
+      background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+      box-shadow: 0 8px 25px rgba(99,102,241,.2);
     }
 
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    @media (max-width: 700px) {
+      .nav-links a:not(.nav-discord) {
+        display: none;
+      }
 
-      padding: 11px 17px;
-
-      border-radius: 12px;
-
-      background: white;
-      color: black;
-
-      font-size: 12px;
-      font-weight: 800;
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+      nav {
+        height: 60px;
+      }
     }
 
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255,255,255,.16);
-    }
-
-    .mobile-menu {
-      display: none;
-
-      width: 40px;
-      height: 40px;
-
-      border-radius: 12px;
-      border: 1px solid var(--line);
-
-      background: rgba(255,255,255,.05);
-      color: white;
-    }
-
-    /* =========================================================
+    /* =========================
        GENERAL
-       ========================================================= */
+    ========================= */
 
-    .container {
-      width: min(calc(100% - 48px), var(--max-width));
+    section {
+      width: min(1120px, calc(100% - 30px));
       margin: auto;
     }
 
-    section {
-      position: relative;
-      padding: 150px 0;
+    .section {
+      padding: 130px 0;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-
-      color: #a5a5b0;
-
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid rgba(139,92,246,.25);
+      border-radius: 999px;
+      background: rgba(139,92,246,.07);
+      color: #bba5ff;
       font-size: 11px;
       font-weight: 800;
-
-      letter-spacing: .18em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
       content: "";
-
-      width: 25px;
-      height: 1px;
-
-      background: rgba(255,255,255,.55);
+      width: 6px;
+      height: 6px;
+      background: #a78bfa;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #8b5cf6;
     }
 
-    .section-heading {
-      max-width: 800px;
+    .section-title {
       margin-top: 20px;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 900;
     }
 
-    .section-heading h2 {
-      font-size: clamp(42px, 6vw, 76px);
-      line-height: .94;
-      letter-spacing: -.065em;
-      font-weight: 850;
-    }
-
-    .section-heading p {
-      max-width: 570px;
-      margin-top: 25px;
-
+    .section-description {
+      margin-top: 18px;
+      max-width: 600px;
       color: var(--muted);
-
-      font-size: 16px;
-      line-height: 1.8;
+      line-height: 1.75;
+      font-size: 15px;
     }
 
-    /* =========================================================
+    /* =========================
        HERO
-       ========================================================= */
+    ========================= */
 
     .hero {
-      min-height: 100svh;
-
+      min-height: 100vh;
       display: flex;
       align-items: center;
-
-      padding-top: 160px;
-      padding-bottom: 100px;
-
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-      width: 700px;
-      height: 700px;
-
-      left: 50%;
-      top: 38%;
-
-      transform: translate(-50%, -50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(139,92,246,.13),
-          transparent 67%
-        );
-
-      filter: blur(20px);
-
-      pointer-events: none;
+      position: relative;
+      padding-top: 100px;
     }
 
     .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-
-      padding: 9px 13px;
-
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 999px;
-
-      background: rgba(255,255,255,.035);
-
-      color: #aaaab5;
-
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-
-      animation: fadeUp .8s .1s both;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-      background: var(--green);
-
-      box-shadow: 0 0 15px rgba(85,255,154,.7);
+      width: 100%;
+      text-align: center;
     }
 
     .hero h1 {
-      max-width: 1050px;
-
-      margin-top: 28px;
-
-      font-size: clamp(76px, 14vw, 190px);
-      line-height: .77;
-
+      margin: 25px auto 0;
+      max-width: 950px;
+      font-size: clamp(68px, 12vw, 150px);
+      line-height: .8;
       letter-spacing: -.09em;
-      font-weight: 950;
-
-      animation: fadeUp .9s .2s both;
+      font-weight: 900;
     }
 
-    .hero h1 span {
-      display: block;
-
+    .hero h1 .gradient {
+      background: linear-gradient(
+        100deg,
+        #fff 10%,
+        #c4b5fd 45%,
+        #8b5cf6 75%,
+        #6366f1
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
-
-      -webkit-text-stroke: 1px rgba(255,255,255,.55);
-
-      text-shadow:
-        0 0 80px rgba(139,92,246,.12);
     }
 
-    .hero-bottom {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-
-      margin-top: 48px;
-
-      animation: fadeUp .9s .35s both;
-    }
-
-    .hero-copy {
-      max-width: 530px;
-
-      color: #858591;
-
+    .hero-sub {
+      max-width: 620px;
+      margin: 30px auto 0;
+      color: #9696a0;
+      line-height: 1.75;
       font-size: 16px;
-      line-height: 1.8;
     }
 
     .hero-buttons {
+      margin-top: 34px;
       display: flex;
+      justify-content: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .btn {
-      position: relative;
-
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-
-      min-height: 52px;
-
-      padding: 0 22px;
-
-      border-radius: 14px;
-
+      gap: 9px;
+      padding: 14px 21px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
       font-size: 13px;
       font-weight: 800;
-
-      transition:
-        transform .3s cubic-bezier(.16,1,.3,1),
-        background .3s ease,
-        border-color .3s ease;
+      border: 1px solid var(--border);
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-4px);
+    .button:hover {
+      transform: translateY(-3px);
     }
 
-    .btn-primary {
-      background: white;
-      color: black;
-
-      box-shadow:
-        0 15px 45px rgba(255,255,255,.08);
+    .button-primary {
+      border: 0;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      box-shadow: 0 15px 40px rgba(99,102,241,.25);
     }
 
-    .btn-secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: white;
+    .button-primary:hover {
+      box-shadow: 0 20px 55px rgba(99,102,241,.4);
     }
 
-    .btn-secondary:hover {
+    .button-secondary {
+      background: rgba(255,255,255,.045);
+    }
+
+    .button-secondary:hover {
       background: rgba(255,255,255,.08);
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 45px;
-      left: 50%;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-
-      transform: translateX(-50%);
-
-      color: #555560;
-
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 55px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,.5),
-          transparent
-        );
-
-      animation: scrollPulse 1.8s infinite;
-    }
-
-    /* =========================================================
-       MARQUEE
-       ========================================================= */
-
-    .marquee-section {
-      padding: 0;
-
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-
-      overflow: hidden;
-    }
-
-    .marquee {
-      display: flex;
-      width: max-content;
-
-      animation: marquee 28s linear infinite;
-    }
-
-    .marquee span {
-      display: flex;
-      align-items: center;
-      gap: 35px;
-
-      padding: 24px 35px;
-
-      color: #4c4c56;
-
-      font-size: 12px;
-      font-weight: 900;
-
-      letter-spacing: .2em;
-      text-transform: uppercase;
-
-      white-space: nowrap;
-    }
-
-    .marquee span::after {
-      content: "✦";
-      color: #777780;
-    }
-
-    /* =========================================================
-       ABOUT
-       ========================================================= */
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 80px;
-
-      margin-top: 80px;
-    }
-
-    .about-visual {
+    .hero-card {
+      width: min(950px, 100%);
+      height: 330px;
+      margin: 80px auto 0;
       position: relative;
-
-      min-height: 520px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1px solid var(--line);
-      border-radius: 32px;
-
       overflow: hidden;
-
+      border: 1px solid var(--border);
+      border-radius: 28px;
       background:
-        radial-gradient(
-          circle at center,
-          rgba(139,92,246,.13),
-          transparent 45%
-        ),
-        rgba(255,255,255,.025);
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.2), transparent 35%),
+        linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+      box-shadow: 0 40px 100px rgba(0,0,0,.45);
     }
 
-    .about-visual::before {
+    .hero-card::before {
       content: "";
-
       position: absolute;
-      inset: 25px;
-
-      border: 1px solid rgba(255,255,255,.05);
-      border-radius: 24px;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      transform: translateX(-100%);
+      animation: shine 5s infinite;
     }
 
-    .orb {
-      width: 230px;
-      height: 230px;
+    @keyframes shine {
+      0%, 65% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
 
+    .hero-center {
+      position: absolute;
+      inset: 0;
       display: grid;
       place-items: center;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 35% 30%,
-          #fff,
-          #b7b7c0 10%,
-          #38383f 38%,
-          #09090c 70%
-        );
-
-      box-shadow:
-        0 0 100px rgba(139,92,246,.3),
-        inset -25px -25px 60px rgba(0,0,0,.8);
-
-      animation: float 5s ease-in-out infinite;
     }
 
-    .orb::after {
-      content: "V";
-
-      color: white;
-
-      font-size: 90px;
-      font-weight: 950;
-      letter-spacing: -.1em;
-
-      text-shadow: 0 0 35px rgba(255,255,255,.35);
-    }
-
-    .about-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .about-text h3 {
-      max-width: 650px;
-
-      font-size: clamp(35px, 5vw, 60px);
-      line-height: 1;
-      letter-spacing: -.06em;
-    }
-
-    .about-text p {
-      max-width: 580px;
-
-      margin-top: 30px;
-
-      color: var(--muted);
-
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .about-list {
+    .hero-symbol {
+      width: 130px;
+      height: 130px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-
-      margin-top: 35px;
+      place-items: center;
+      border-radius: 35px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(10,10,15,.6);
+      box-shadow:
+        0 0 100px rgba(139,92,246,.25),
+        inset 0 1px rgba(255,255,255,.1);
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -.1em;
     }
 
-    .about-item {
-      padding: 18px;
+    .floating {
+      position: absolute;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(10,10,15,.7);
+      backdrop-filter: blur(12px);
+      color: #aaaab4;
+      font-size: 11px;
+      font-weight: 700;
+    }
 
-      border: 1px solid var(--line);
-      border-radius: 16px;
+    .float-1 { top: 45px; left: 60px; }
+    .float-2 { top: 80px; right: 65px; }
+    .float-3 { bottom: 45px; left: 120px; }
+    .float-4 { bottom: 55px; right: 110px; }
 
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
       background: rgba(255,255,255,.025);
     }
 
-    .about-item strong {
-      display: block;
-
-      font-size: 22px;
-      letter-spacing: -.04em;
-    }
-
-    .about-item span {
-      display: block;
-
-      margin-top: 5px;
-
-      color: var(--muted-2);
-
-      font-size: 11px;
-      font-weight: 700;
-
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-
-    /* =========================================================
-       STATS
-       ========================================================= */
-
-    .stats-section {
-      padding-top: 70px;
-      padding-bottom: 70px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
     .stat {
-      padding: 40px 25px;
-
-      border-right: 1px solid var(--line);
+      padding: 30px;
+      text-align: center;
+      border-right: 1px solid var(--border);
     }
 
     .stat:last-child {
       border-right: 0;
     }
 
-    .stat-number {
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1;
-
-      font-weight: 900;
-      letter-spacing: -.07em;
+    .stat strong {
+      display: block;
+      font-size: 35px;
+      letter-spacing: -.05em;
     }
 
-    .stat-label {
-      margin-top: 12px;
-
-      color: var(--muted-2);
-
-      font-size: 10px;
-      font-weight: 800;
-
-      letter-spacing: .16em;
-      text-transform: uppercase;
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
-    /* =========================================================
+    @media(max-width:600px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    /* =========================
        GAMES
-       ========================================================= */
+    ========================= */
 
     .games-grid {
+      margin-top: 50px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-
-      margin-top: 70px;
+      gap: 16px;
     }
 
     .game-card {
+      min-height: 340px;
       position: relative;
-
-      min-height: 380px;
-
-      padding: 28px;
-
+      overflow: hidden;
+      padding: 27px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-
-      border: 1px solid var(--line);
-      border-radius: 28px;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 90% 0%,
-          rgba(139,92,246,.11),
-          transparent 40%
-        ),
-        rgba(255,255,255,.025);
-
-      transition:
-        transform .45s cubic-bezier(.16,1,.3,1),
-        border-color .4s ease,
-        background .4s ease;
+      justify-content: flex-end;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.018));
+      transition: .4s cubic-bezier(.2,.8,.2,1);
     }
 
     .game-card:hover {
-      transform: translateY(-10px);
-
-      border-color: rgba(255,255,255,.18);
-
-      background:
-        radial-gradient(
-          circle at 90% 0%,
-          rgba(139,92,246,.18),
-          transparent 45%
-        ),
-        rgba(255,255,255,.045);
+      transform: translateY(-8px);
+      border-color: rgba(139,92,246,.35);
+      background: var(--card-hover);
+      box-shadow: 0 30px 70px rgba(0,0,0,.35);
     }
 
-    .game-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .game-number {
-      color: #52525d;
-
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .game-status {
-      padding: 6px 9px;
-
-      border-radius: 999px;
-
-      background: rgba(85,255,154,.07);
-      color: #71dc9a;
-
-      font-size: 9px;
-      font-weight: 800;
-
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .game-symbol {
+    .game-bg {
       position: absolute;
-
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%, -50%);
-
-      color: rgba(255,255,255,.025);
-
-      font-size: 170px;
-      font-weight: 950;
-
-      pointer-events: none;
+      inset: 0;
+      opacity: .35;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(139,92,246,.4), transparent 30%),
+        linear-gradient(145deg, transparent, rgba(99,102,241,.08));
     }
 
-    .game-info {
+    .game-icon {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(0,0,0,.3);
+      font-size: 23px;
+    }
+
+    .game-card h3,
+    .game-card p {
       position: relative;
       z-index: 2;
     }
 
-    .game-info h3 {
-      font-size: 38px;
-      letter-spacing: -.06em;
+    .game-card h3 {
+      font-size: 26px;
+      letter-spacing: -.04em;
     }
 
-    .game-info p {
-      max-width: 270px;
-
-      margin-top: 10px;
-
-      color: var(--muted);
-
+    .game-card p {
+      margin-top: 8px;
+      color: #888892;
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    .game-link {
-      margin-top: 25px;
-
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      color: white;
-
-      font-size: 11px;
-      font-weight: 800;
-
-      text-transform: uppercase;
-      letter-spacing: .1em;
+    @media(max-width:800px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .game-link span {
-      transition: transform .3s ease;
-    }
+    /* =========================
+       ABOUT
+    ========================= */
 
-    .game-card:hover .game-link span {
-      transform: translateX(5px);
-    }
-
-    /* =========================================================
-       ROSTER
-       ========================================================= */
-
-    .roster-section {
-      overflow: hidden;
-    }
-
-    .roster-grid {
+    .about-layout {
+      margin-top: 55px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-
-      margin-top: 70px;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
-    .player {
-      position: relative;
+    .about-box {
+      min-height: 300px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+    }
 
-      min-height: 420px;
-
+    .about-box.large {
+      grid-row: span 2;
+      min-height: 620px;
       display: flex;
       flex-direction: column;
-      justify-content: end;
-
-      padding: 24px;
-
-      border: 1px solid var(--line);
-      border-radius: 24px;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.9),
-          rgba(0,0,0,.05)
-        ),
-        radial-gradient(
-          circle at 50% 25%,
-          rgba(139,92,246,.25),
-          transparent 45%
-        ),
-        #111117;
-
-      transition:
-        transform .4s cubic-bezier(.16,1,.3,1),
-        border-color .3s ease;
+      justify-content: space-between;
     }
 
-    .player:hover {
-      transform: translateY(-8px);
-      border-color: rgba(255,255,255,.2);
-    }
-
-    .player::before {
-      content: "";
-
-      position: absolute;
-
-      width: 170px;
-      height: 170px;
-
-      left: 50%;
-      top: 28%;
-
-      transform: translate(-50%, -50%);
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.2),
-          rgba(139,92,246,.08)
-        );
-
-      border: 1px solid rgba(255,255,255,.1);
-
-      box-shadow:
-        0 0 70px rgba(139,92,246,.12);
-    }
-
-    .player-avatar {
-      position: absolute;
-
-      top: 19%;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      font-size: 72px;
-      font-weight: 950;
-
-      color: rgba(255,255,255,.15);
-      letter-spacing: -.1em;
-    }
-
-    .player-role {
-      color: #777783;
-
-      font-size: 9px;
-      font-weight: 800;
-
-      text-transform: uppercase;
-      letter-spacing: .15em;
-    }
-
-    .player-name {
-      margin-top: 7px;
-
-      font-size: 28px;
-      font-weight: 850;
-
-      letter-spacing: -.05em;
-    }
-
-    .player-tag {
-      margin-top: 4px;
-
-      color: #777783;
-
-      font-size: 11px;
-    }
-
-    /* =========================================================
-       TIMELINE
-       ========================================================= */
-
-    .timeline {
-      position: relative;
-
-      margin-top: 75px;
-    }
-
-    .timeline::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-      left: 50%;
-
-      width: 1px;
-
-      background: var(--line);
-    }
-
-    .timeline-item {
-      position: relative;
-
-      width: 50%;
-
-      padding: 25px 50px 50px 0;
-    }
-
-    .timeline-item:nth-child(even) {
-      margin-left: 50%;
-      padding: 25px 0 50px 50px;
-    }
-
-    .timeline-dot {
-      position: absolute;
-
-      top: 32px;
-      right: -5px;
-
-      width: 10px;
-      height: 10px;
-
-      border-radius: 50%;
-
-      background: white;
-
-      box-shadow:
-        0 0 0 6px var(--bg),
-        0 0 20px rgba(255,255,255,.4);
-    }
-
-    .timeline-item:nth-child(even) .timeline-dot {
-      left: -5px;
-      right: auto;
-    }
-
-    .timeline-card {
-      padding: 28px;
-
-      border: 1px solid var(--line);
-      border-radius: 22px;
-
-      background: rgba(255,255,255,.025);
-
-      transition:
-        background .3s ease,
-        transform .3s ease;
-    }
-
-    .timeline-card:hover {
-      background: rgba(255,255,255,.05);
-      transform: translateY(-4px);
-    }
-
-    .timeline-date {
-      color: #72727d;
-
-      font-size: 10px;
-      font-weight: 800;
-
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .timeline-card h3 {
-      margin-top: 12px;
-
+    .about-box h3 {
       font-size: 25px;
       letter-spacing: -.04em;
     }
 
-    .timeline-card p {
-      margin-top: 10px;
-
+    .about-box p {
       color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+      margin-top: 14px;
+    }
 
+    .big-mark {
+      font-size: 130px;
+      line-height: .8;
+      font-weight: 900;
+      letter-spacing: -.12em;
+      color: rgba(255,255,255,.05);
+    }
+
+    .mini-list {
+      margin-top: 25px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-list div {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      color: #aaaab3;
+      font-size: 12px;
+    }
+
+    @media(max-width:800px) {
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box.large {
+        grid-row: auto;
+        min-height: 400px;
+      }
+    }
+
+    /* =========================
+       PEOPLE
+    ========================= */
+
+    .people-grid {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .person {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      transition: .3s ease;
+    }
+
+    .person:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,.06);
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: linear-gradient(145deg, #181820, #0c0c11);
+      border: 1px solid var(--border);
+      font-weight: 900;
+      font-size: 17px;
+      color: #c4b5fd;
+    }
+
+    .person h3 {
+      margin-top: 22px;
+      font-size: 18px;
+    }
+
+    .role {
+      margin-top: 5px;
+      color: #9177dd;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .person p {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    @media(max-width:800px) {
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* =========================
+       VALUES
+    ========================= */
+
+    .values {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .value {
+      padding: 30px;
+      min-height: 180px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .value-number {
+      color: #7658cb;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .value h3 {
+      margin-top: 25px;
+      font-size: 22px;
+    }
+
+    .value p {
+      margin-top: 8px;
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
     }
 
-    /* =========================================================
-       VALUES
-       ========================================================= */
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-
-      margin-top: 70px;
+    @media(max-width:700px) {
+      .values {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .value {
-      min-height: 270px;
+    /* =========================
+       DISCORD
+    ========================= */
 
-      padding: 30px;
-
-      border: 1px solid var(--line);
-      border-radius: 24px;
-
-      background: rgba(255,255,255,.025);
-
-      transition:
-        transform .4s cubic-bezier(.16,1,.3,1),
-        background .3s ease;
-    }
-
-    .value:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,.05);
-    }
-
-    .value-icon {
-      width: 42px;
-      height: 42px;
-
-      display: grid;
-      place-items: center;
-
-      border: 1px solid var(--line);
-      border-radius: 13px;
-
-      background: rgba(255,255,255,.04);
-
-      font-size: 17px;
-    }
-
-    .value h3 {
-      margin-top: 70px;
-
-      font-size: 24px;
-      letter-spacing: -.04em;
-    }
-
-    .value p {
-      margin-top: 10px;
-
-      color: var(--muted);
-
-      font-size: 13px;
-      line-height: 1.75;
-    }
-
-    /* =========================================================
-       DISCORD CTA
-       ========================================================= */
-
-    .cta-section {
-      padding: 120px 0 180px;
-    }
-
-    .cta {
+    .discord {
       position: relative;
-
-      min-height: 500px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 50px;
-
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 35px;
-
       overflow: hidden;
-
+      padding: 75px 40px;
+      text-align: center;
+      border: 1px solid rgba(139,92,246,.25);
+      border-radius: 30px;
       background:
-        radial-gradient(
-          circle at 50% 40%,
-          rgba(139,92,246,.2),
-          transparent 45%
-        ),
-        rgba(255,255,255,.025);
+        radial-gradient(circle at 50% 100%, rgba(99,102,241,.18), transparent 55%),
+        rgba(255,255,255,.035);
     }
 
-    .cta::before {
+    .discord::before {
       content: "";
-
       position: absolute;
-      inset: 15px;
-
-      border: 1px solid rgba(255,255,255,.045);
-      border-radius: 25px;
-
-      pointer-events: none;
+      width: 400px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(139,92,246,.08);
+      box-shadow:
+        0 0 0 60px rgba(139,92,246,.02),
+        0 0 0 120px rgba(139,92,246,.015);
     }
 
-    .cta h2 {
+    .discord > * {
       position: relative;
-
-      max-width: 850px;
-
-      font-size: clamp(50px, 8vw, 100px);
-      line-height: .9;
-
-      letter-spacing: -.08em;
-      font-weight: 950;
+      z-index: 2;
     }
 
-    .cta p {
-      position: relative;
+    .discord h2 {
+      margin-top: 20px;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
 
-      max-width: 500px;
-
-      margin-top: 25px;
-
+    .discord p {
+      max-width: 550px;
+      margin: 18px auto 30px;
       color: var(--muted);
-
-      line-height: 1.8;
+      line-height: 1.7;
+      font-size: 14px;
     }
 
-    .cta .btn {
-      position: relative;
+    /* =========================
+       FAQ
+    ========================= */
 
-      margin-top: 35px;
+    .faq {
+      margin-top: 50px;
+      max-width: 850px;
     }
 
-    /* =========================================================
+    details {
+      border-top: 1px solid var(--border);
+      padding: 23px 0;
+    }
+
+    details:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    summary {
+      cursor: none;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      color: #777783;
+      font-size: 20px;
+      font-weight: 400;
+      transition: .25s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+      color: #a78bfa;
+    }
+
+    details p {
+      max-width: 700px;
+      margin-top: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    /* =========================
        FOOTER
-       ========================================================= */
+    ========================= */
 
     footer {
-      padding: 45px 0;
-
-      border-top: 1px solid var(--line);
+      width: min(1120px, calc(100% - 30px));
+      margin: auto;
+      padding: 45px 0 35px;
+      border-top: 1px solid var(--border);
     }
 
-    .footer-inner {
+    .footer-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      gap: 20px;
     }
 
-    .footer-brand {
-      color: #666670;
-
-      font-size: 11px;
-      font-weight: 800;
-
-      letter-spacing: .2em;
+    .footer-text {
+      color: #666671;
+      font-size: 12px;
+      line-height: 1.7;
+      max-width: 450px;
     }
 
     .footer-links {
       display: flex;
-      gap: 25px;
+      gap: 10px;
     }
 
     .footer-links a {
-      color: #666670;
-
-      font-size: 11px;
-      font-weight: 700;
-
-      transition: color .25s ease;
+      color: #85858f;
+      text-decoration: none;
+      font-size: 12px;
+      transition: .2s;
     }
 
     .footer-links a:hover {
       color: white;
     }
 
-    /* =========================================================
-       SCROLL REVEAL
-       ========================================================= */
+    .copyright {
+      margin-top: 35px;
+      color: #45454e;
+      font-size: 11px;
+    }
+
+    @media(max-width:650px) {
+      .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* =========================
+       REVEAL ANIMATIONS
+    ========================= */
 
     .reveal {
       opacity: 0;
-      transform: translateY(45px);
-
+      transform: translateY(35px);
       transition:
-        opacity .9s cubic-bezier(.16,1,.3,1),
-        transform .9s cubic-bezier(.16,1,.3,1);
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
     }
 
     .reveal.visible {
@@ -1416,968 +930,445 @@
       transform: translateY(0);
     }
 
-    /* =========================================================
-       ANIMATIONS
-       ========================================================= */
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-      }
+    /* =========================
+       SCROLLBAR
+    ========================= */
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    ::-webkit-scrollbar {
+      width: 8px;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-20px) rotate(4deg);
-      }
+    ::-webkit-scrollbar-track {
+      background: #07070b;
     }
 
-    @keyframes scrollPulse {
-      0%, 100% {
-        opacity: .25;
-      }
-
-      50% {
-        opacity: 1;
-      }
+    ::-webkit-scrollbar-thumb {
+      background: #25232e;
+      border-radius: 99px;
     }
 
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #393345;
     }
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-
-    @media (max-width: 900px) {
-
-      body {
-        cursor: auto;
-      }
-
-      .cursor-dot,
-      .cursor-ring {
-        display: none;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .mobile-menu {
-        display: grid;
-        place-items: center;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: clamp(70px, 17vw, 130px);
-      }
-
-      .hero-bottom {
-        flex-direction: column;
-        align-items: start;
-        gap: 30px;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .games-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .roster-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stat:nth-child(2) {
-        border-right: 0;
-      }
-
-      .stat:nth-child(-n+2) {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      .container {
-        width: min(calc(100% - 28px), var(--max-width));
-      }
-
-      section {
-        padding: 105px 0;
-      }
-
-      .nav-wrap {
-        width: calc(100% - 20px);
-        top: 10px;
-      }
-
-      nav {
-        height: 62px;
-        padding-left: 13px;
-      }
-
-      .brand {
-        font-size: 15px;
-      }
-
-      .hero {
-        min-height: 900px;
-        padding-top: 130px;
-      }
-
-      .hero h1 {
-        margin-top: 25px;
-
-        font-size: clamp(67px, 21vw, 105px);
-
-        line-height: .8;
-      }
-
-      .hero-copy {
-        font-size: 14px;
-      }
-
-      .hero-buttons {
-        width: 100%;
-        flex-direction: column;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      .hero-scroll {
-        display: none;
-      }
-
-      .about-grid {
-        margin-top: 50px;
-        gap: 35px;
-      }
-
-      .about-visual {
-        min-height: 380px;
-      }
-
-      .orb {
-        width: 170px;
-        height: 170px;
-      }
-
-      .orb::after {
-        font-size: 65px;
-      }
-
-      .about-list {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .games-grid {
-        grid-template-columns: 1fr;
-        margin-top: 50px;
-      }
-
-      .game-card {
-        min-height: 330px;
-      }
-
-      .roster-grid {
-        grid-template-columns: 1fr 1fr;
-        margin-top: 50px;
-      }
-
-      .player {
-        min-height: 330px;
-        padding: 17px;
-      }
-
-      .player-avatar {
-        font-size: 50px;
-      }
-
-      .player::before {
-        width: 120px;
-        height: 120px;
-      }
-
-      .player-name {
-        font-size: 21px;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stat {
-        padding: 28px 17px;
-      }
-
-      .stat-number {
-        font-size: 38px;
-      }
-
-      .timeline::before {
-        left: 7px;
-      }
-
-      .timeline-item,
-      .timeline-item:nth-child(even) {
-        width: 100%;
-        margin-left: 0;
-        padding: 20px 0 30px 35px;
-      }
-
-      .timeline-dot,
-      .timeline-item:nth-child(even) .timeline-dot {
-        left: 2px;
-        right: auto;
-      }
-
-      .timeline-card {
-        padding: 22px;
-      }
-
-      .cta {
-        min-height: 430px;
-        padding: 30px 20px;
-        border-radius: 25px;
-      }
-
-      .cta h2 {
-        font-size: 55px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        gap: 25px;
-      }
-
-      .footer-links {
-        gap: 17px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
+    ::selection {
+      background: rgba(139,92,246,.35);
+      color: white;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
   <div class="noise"></div>
   <div class="grid"></div>
-  <div class="glow" id="glow"></div>
 
-  <!-- CURSOR -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
-  <!-- =======================================================
-       NAV
-       ======================================================= -->
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
 
-  <div class="nav-wrap">
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="logo">
+      <div class="logo-box"><span>B</span></div>
+      BRTX
+    </a>
 
-    <nav>
-
-      <a href="#home" class="brand">
-        <span class="brand-mark">V</span>
-        VEXN
-      </a>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#games">Games</a>
-        <a href="#roster">Roster</a>
-        <a href="#events">Events</a>
-      </div>
+    <div class="nav-links">
+      <a href="#games">Games</a>
+      <a href="#about">About</a>
+      <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
 
       <a
-        class="nav-cta"
-        href="https://discord.gg/bAzUKFhcvU"
+        class="nav-discord"
+        href="https://discord.gg/VDbAZYQTVx"
         target="_blank"
         rel="noopener"
       >
-        JOIN DISCORD
-        <span>↗</span>
+        Discord ↗
       </a>
+    </div>
+  </nav>
 
-      <button class="mobile-menu" aria-label="Menu">
-        ☰
-      </button>
+  <!-- HERO -->
+  <main id="home">
 
-    </nav>
-
-  </div>
-
-
-  <!-- =======================================================
-       HERO
-       ======================================================= -->
-
-  <main>
-
-    <section class="hero" id="home">
-
-      <div class="container">
-
-        <div class="hero-content">
-
-          <div class="hero-tag">
-            <span class="status-dot"></span>
-            VEXN ESPORTS — ONLINE
-          </div>
-
-          <h1>
-            PLAY.
-            <span>COMPETE.</span>
-            CONQUER.
-          </h1>
-
-          <div class="hero-bottom">
-
-            <p class="hero-copy">
-              VEXN is an independent esports organization built for
-              players who refuse to play ordinary. We compete,
-              create and build a community around the next generation
-              of competitive gaming.
-            </p>
-
-            <div class="hero-buttons">
-
-              <a class="btn btn-primary" href="#games">
-                EXPLORE VEXN
-                <span>↓</span>
-              </a>
-
-              <a
-                class="btn btn-secondary"
-                href="https://discord.gg/bAzUKFhcvU"
-                target="_blank"
-                rel="noopener"
-              >
-                JOIN OUR DISCORD
-                <span>↗</span>
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="hero-scroll">
-        SCROLL
-        <span class="scroll-line"></span>
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         MARQUEE
-         ===================================================== -->
-
-    <section class="marquee-section">
-
-      <div class="marquee">
-
-        <span>VEXN ESPORTS</span>
-        <span>BUILT DIFFERENT</span>
-        <span>NO LIMITS</span>
-        <span>COMPETE BEYOND</span>
-        <span>VEXN ESPORTS</span>
-        <span>BUILT DIFFERENT</span>
-        <span>NO LIMITS</span>
-        <span>COMPETE BEYOND</span>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         ABOUT
-         ===================================================== -->
-
-    <section id="about">
-
-      <div class="container">
+    <section class="hero">
+      <div class="hero-content">
 
         <div class="eyebrow reveal">
-          WHO WE ARE
+          BRTX COMMUNITY
         </div>
 
-        <div class="section-heading reveal">
-          <h2>
-            MORE THAN<br />
-            A TEAM.
-          </h2>
-
-          <p>
-            We're building an esports brand where competitive
-            performance meets creativity, community and ambition.
-          </p>
-        </div>
-
-
-        <div class="about-grid">
-
-          <div class="about-visual reveal">
-
-            <div class="orb"></div>
-
-          </div>
-
-
-          <div class="about-text reveal">
-
-            <h3>
-              We don't follow the meta.
-              We create our own.
-            </h3>
-
-            <p>
-              VEXN exists to bring together competitive players,
-              creators and fans under one identity. From ranked
-              sessions to tournaments, every part of VEXN is built
-              around one idea: getting better than yesterday.
-            </p>
-
-            <div class="about-list">
-
-              <div class="about-item">
-                <strong>01</strong>
-                <span>Competitive</span>
-              </div>
-
-              <div class="about-item">
-                <strong>02</strong>
-                <span>Community</span>
-              </div>
-
-              <div class="about-item">
-                <strong>03</strong>
-                <span>Content</span>
-              </div>
-
-              <div class="about-item">
-                <strong>04</strong>
-                <span>Growth</span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         STATS
-         ===================================================== -->
-
-    <section class="stats-section">
-
-      <div class="container">
-
-        <div class="stats-grid reveal">
-
-          <div class="stat">
-            <div class="stat-number">01</div>
-            <div class="stat-label">Organization</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Grinding</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">Potential</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Committed</div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         GAMES
-         ===================================================== -->
-
-    <section id="games">
-
-      <div class="container">
-
-        <div class="eyebrow reveal">
-          OUR GAMES
-        </div>
-
-        <div class="section-heading reveal">
-          <h2>
-            WHERE WE<br />
-            COMPETE.
-          </h2>
-
-          <p>
-            VEXN is constantly looking for new opportunities to
-            compete and grow across the competitive gaming scene.
-          </p>
-        </div>
-
-
-        <div class="games-grid">
-
-          <article class="game-card reveal">
-
-            <div class="game-top">
-              <span class="game-number">01 / FPS</span>
-              <span class="game-status">ACTIVE</span>
-            </div>
-
-            <div class="game-symbol">V</div>
-
-            <div class="game-info">
-              <h3>VALORANT</h3>
-
-              <p>
-                Tactical precision. Team coordination.
-                No wasted rounds.
-              </p>
-
-              <a class="game-link" href="#roster">
-                VIEW TEAM
-                <span>→</span>
-              </a>
-            </div>
-
-          </article>
-
-
-          <article class="game-card reveal">
-
-            <div class="game-top">
-              <span class="game-number">02 / BATTLE</span>
-              <span class="game-status">ACTIVE</span>
-            </div>
-
-            <div class="game-symbol">X</div>
-
-            <div class="game-info">
-              <h3>FORTNITE</h3>
-
-              <p>
-                Mechanics, game sense and consistency
-                under pressure.
-              </p>
-
-              <a class="game-link" href="#roster">
-                VIEW TEAM
-                <span>→</span>
-              </a>
-            </div>
-
-          </article>
-
-
-          <article class="game-card reveal">
-
-            <div class="game-top">
-              <span class="game-number">03 / MORE</span>
-              <span class="game-status">EXPANDING</span>
-            </div>
-
-            <div class="game-symbol">N</div>
-
-            <div class="game-info">
-              <h3>COMING SOON</h3>
-
-              <p>
-                New titles. New competitors.
-                Same VEXN mentality.
-              </p>
-
-              <a class="game-link" href="#discord">
-                STAY UPDATED
-                <span>→</span>
-              </a>
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         ROSTER
-         ===================================================== -->
-
-    <section class="roster-section" id="roster">
-
-      <div class="container">
-
-        <div class="eyebrow reveal">
-          THE ROSTER
-        </div>
-
-        <div class="section-heading reveal">
-          <h2>
-            BUILT BY<br />
-            PLAYERS.
-          </h2>
-
-          <p>
-            Meet the people putting the VEXN name on the map.
-          </p>
-        </div>
-
-
-        <div class="roster-grid">
-
-          <article class="player reveal">
-            <div class="player-avatar">V</div>
-
-            <div>
-              <div class="player-role">CAPTAIN</div>
-              <div class="player-name">VEXN</div>
-              <div class="player-tag">@player_one</div>
-            </div>
-          </article>
-
-
-          <article class="player reveal">
-            <div class="player-avatar">X</div>
-
-            <div>
-              <div class="player-role">DUELIST</div>
-              <div class="player-name">VEXN</div>
-              <div class="player-tag">@player_two</div>
-            </div>
-          </article>
-
-
-          <article class="player reveal">
-            <div class="player-avatar">N</div>
-
-            <div>
-              <div class="player-role">FLEX</div>
-              <div class="player-name">VEXN</div>
-              <div class="player-tag">@player_three</div>
-            </div>
-          </article>
-
-
-          <article class="player reveal">
-            <div class="player-avatar">Z</div>
-
-            <div>
-              <div class="player-role">INITIATOR</div>
-              <div class="player-name">VEXN</div>
-              <div class="player-tag">@player_four</div>
-            </div>
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         EVENTS
-         ===================================================== -->
-
-    <section id="events">
-
-      <div class="container">
-
-        <div class="eyebrow reveal">
-          THE JOURNEY
-        </div>
-
-        <div class="section-heading reveal">
-          <h2>
-            ALWAYS<br />
-            MOVING.
-          </h2>
-
-          <p>
-            VEXN isn't waiting for the future. We're building it.
-          </p>
-        </div>
-
-
-        <div class="timeline">
-
-          <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-card">
-
-              <div class="timeline-date">
-                CHAPTER 01
-              </div>
-
-              <h3>The Beginning</h3>
-
-              <p>
-                VEXN starts with a simple goal:
-                build something competitive, creative
-                and different.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-card">
-
-              <div class="timeline-date">
-                CHAPTER 02
-              </div>
-
-              <h3>First Competition</h3>
-
-              <p>
-                The first teams step onto the battlefield
-                and begin representing the VEXN identity.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-card">
-
-              <div class="timeline-date">
-                CHAPTER 03
-              </div>
-
-              <h3>Growing The Squad</h3>
-
-              <p>
-                Players, creators and supporters join
-                the movement and the community starts growing.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="timeline-item reveal">
-
-            <span class="timeline-dot"></span>
-
-            <div class="timeline-card">
-
-              <div class="timeline-date">
-                CHAPTER 04
-              </div>
-
-              <h3>What's Next?</h3>
-
-              <p>
-                Bigger competitions. Better players.
-                Bigger goals. This is only the beginning.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         VALUES
-         ===================================================== -->
-
-    <section>
-
-      <div class="container">
-
-        <div class="eyebrow reveal">
-          THE VEXN MINDSET
-        </div>
-
-        <div class="section-heading reveal">
-          <h2>
-            DIFFERENT<br />
-            BY DESIGN.
-          </h2>
-        </div>
-
-
-        <div class="values-grid">
-
-          <article class="value reveal">
-
-            <div class="value-icon">
-              ↗
-            </div>
-
-            <h3>AMBITION</h3>
-
-            <p>
-              We set goals that force us to improve.
-              Comfortable isn't part of the plan.
-            </p>
-
-          </article>
-
-
-          <article class="value reveal">
-
-            <div class="value-icon">
-              ◇
-            </div>
-
-            <h3>IDENTITY</h3>
-
-            <p>
-              VEXN is more than a logo.
-              It's a mindset, a community and a standard.
-            </p>
-
-          </article>
-
-
-          <article class="value reveal">
-
-            <div class="value-icon">
-              ∞
-            </div>
-
-            <h3>EVOLUTION</h3>
-
-            <p>
-              The game changes. We change with it.
-              Staying still isn't an option.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         DISCORD
-         ===================================================== -->
-
-    <section class="cta-section" id="discord">
-
-      <div class="container">
-
-        <div class="cta reveal">
-
-          <div class="eyebrow">
-            JOIN THE MOVEMENT
-          </div>
-
-          <h2>
-            READY TO<br />
-            BE VEXN?
-          </h2>
-
-          <p>
-            Join the community, meet the squad, stay updated
-            and be part of what's coming next.
-          </p>
-
+        <h1 class="reveal delay-1">
+          PLAY.<br>
+          <span class="gradient">CONNECT.</span>
+        </h1>
+
+        <p class="hero-sub reveal delay-2">
+          A gaming community built for people who love playing,
+          meeting new people, and having a place to call home.
+        </p>
+
+        <div class="hero-buttons reveal delay-3">
           <a
-            class="btn btn-primary"
-            href="https://discord.gg/bAzUKFhcvU"
+            href="https://discord.gg/VDbAZYQTVx"
             target="_blank"
             rel="noopener"
+            class="button button-primary"
           >
-            JOIN DISCORD
-            <span>↗</span>
+            Join the Community ↗
           </a>
 
+          <a href="#games" class="button button-secondary">
+            Explore BRTX ↓
+          </a>
         </div>
+
+        <div class="hero-card reveal delay-3">
+
+          <div class="floating float-1">VALORANT</div>
+          <div class="floating float-2">FORTNITE</div>
+          <div class="floating float-3">ROCKET LEAGUE</div>
+          <div class="floating float-4">COMMUNITY</div>
+
+          <div class="hero-center">
+            <div class="hero-symbol">BRTX</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section reveal">
+      <div class="stats">
+
+        <div class="stat">
+          <strong>03</strong>
+          <span>Featured Games</span>
+        </div>
+
+        <div class="stat">
+          <strong>01</strong>
+          <span>Community</span>
+        </div>
+
+        <div class="stat">
+          <strong>∞</strong>
+          <span>Possibilities</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GAMES -->
+    <section id="games" class="section">
+
+      <div class="reveal">
+        <div class="eyebrow">WHAT WE PLAY</div>
+
+        <h2 class="section-title">
+          Your games.<br>
+          Your people.
+        </h2>
+
+        <p class="section-description">
+          BRTX brings gamers together around the games they already love.
+          Jump into a match, find people to play with, or just hang out.
+        </p>
+      </div>
+
+      <div class="games-grid">
+
+        <article class="game-card reveal">
+          <div class="game-bg"></div>
+          <div class="game-icon">◈</div>
+
+          <h3>VALORANT</h3>
+          <p>
+            Tactical FPS, competitive matches, clutch moments
+            and everything in between.
+          </p>
+        </article>
+
+        <article class="game-card reveal delay-1">
+          <div class="game-bg"></div>
+          <div class="game-icon">⚽</div>
+
+          <h3>Rocket League</h3>
+          <p>
+            Cars, football, ridiculous goals and even more
+            ridiculous saves.
+          </p>
+        </article>
+
+        <article class="game-card reveal delay-2">
+          <div class="game-bg"></div>
+          <div class="game-icon">◆</div>
+
+          <h3>Fortnite</h3>
+          <p>
+            Drop in, build, fight, explore and play with
+            the BRTX community.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+
+      <div class="reveal">
+        <div class="eyebrow">ABOUT BRTX</div>
+
+        <h2 class="section-title">
+          More than<br>
+          just a server.
+        </h2>
+
+        <p class="section-description">
+          BRTX is a community for gamers who want somewhere
+          chill to meet people, play games and spend time together.
+        </p>
+      </div>
+
+      <div class="about-layout">
+
+        <div class="about-box large reveal">
+
+          <div>
+            <h3>Built around community.</h3>
+
+            <p>
+              We aren't trying to be something we're not.
+              BRTX is simply a place where gamers can come together,
+              find people to play with and enjoy the community.
+            </p>
+
+            <div class="mini-list">
+              <div>✦ Meet new people</div>
+              <div>✦ Find people to play with</div>
+              <div>✦ Talk about your favorite games</div>
+              <div>✦ Hang out and have fun</div>
+            </div>
+          </div>
+
+          <div class="big-mark">BRTX</div>
+
+        </div>
+
+        <div class="about-box reveal delay-1">
+          <h3>Gaming first.</h3>
+          <p>
+            From competitive matches to casual sessions,
+            there's always something to play.
+          </p>
+        </div>
+
+        <div class="about-box reveal delay-2">
+          <h3>People matter.</h3>
+          <p>
+            A community is nothing without the people in it.
+            BRTX is made by its members.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="section">
+
+      <div class="reveal">
+        <div class="eyebrow">THE PEOPLE BEHIND BRTX</div>
+
+        <h2 class="section-title">
+          Meet the team.
+        </h2>
+
+        <p class="section-description">
+          The people helping keep BRTX running and the community moving.
+        </p>
+      </div>
+
+      <div class="people-grid">
+
+        <article class="person reveal">
+          <div class="avatar">B</div>
+          <h3>Batrix</h3>
+          <div class="role">Founder</div>
+          <p>
+            The founder of BRTX and the person behind the community.
+          </p>
+        </article>
+
+        <article class="person reveal delay-1">
+          <div class="avatar">9</div>
+          <h3>9ue5</h3>
+          <div class="role">Developer</div>
+          <p>
+            Working behind the scenes to build and maintain BRTX.
+          </p>
+        </article>
+
+        <article class="person reveal delay-2">
+          <div class="avatar">F</div>
+          <h3>fr3on</h3>
+          <div class="role">Head Admin</div>
+          <p>
+            Helping manage the community and keep everything running smoothly.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- VALUES -->
+    <section class="section">
+
+      <div class="reveal">
+        <div class="eyebrow">WHAT WE STAND FOR</div>
+
+        <h2 class="section-title">
+          Keep it simple.
+        </h2>
+      </div>
+
+      <div class="values">
+
+        <div class="value reveal">
+          <div class="value-number">01</div>
+          <h3>Community</h3>
+          <p>
+            Everyone should have somewhere they can fit in,
+            meet people and enjoy themselves.
+          </p>
+        </div>
+
+        <div class="value reveal delay-1">
+          <div class="value-number">02</div>
+          <h3>Respect</h3>
+          <p>
+            Treat the people around you with respect and
+            help keep the community welcoming.
+          </p>
+        </div>
+
+        <div class="value reveal delay-2">
+          <div class="value-number">03</div>
+          <h3>Fun</h3>
+          <p>
+            At the end of the day, we're here to play games
+            and have a good time.
+          </p>
+        </div>
+
+        <div class="value reveal delay-3">
+          <div class="value-number">04</div>
+          <h3>Good vibes</h3>
+          <p>
+            No unnecessary seriousness. Just good people,
+            good games and good conversations.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- DISCORD -->
+    <section class="section reveal">
+
+      <div class="discord">
+
+        <div class="eyebrow">JOIN BRTX</div>
+
+        <h2>
+          Come hang out.
+        </h2>
+
+        <p>
+          Ready to meet the community? Join the BRTX Discord
+          and start playing with us.
+        </p>
+
+        <a
+          href="https://discord.gg/VDbAZYQTVx"
+          target="_blank"
+          rel="noopener"
+          class="button button-primary"
+        >
+          Join Discord ↗
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+
+      <div class="reveal">
+        <div class="eyebrow">FAQ</div>
+
+        <h2 class="section-title">
+          Questions?
+        </h2>
+      </div>
+
+      <div class="faq">
+
+        <details class="reveal">
+          <summary>What is BRTX?</summary>
+          <p>
+            BRTX is a gaming community focused on bringing people
+            together to play games, chat and hang out.
+          </p>
+        </details>
+
+        <details class="reveal">
+          <summary>What games does BRTX support?</summary>
+          <p>
+            BRTX currently features VALORANT, Rocket League and Fortnite.
+            The community can also talk about and play other games.
+          </p>
+        </details>
+
+        <details class="reveal">
+          <summary>Is BRTX an esports organization?</summary>
+          <p>
+            No. BRTX is a gaming community, not an esports organization.
+          </p>
+        </details>
+
+        <details class="reveal">
+          <summary>How can I join?</summary>
+          <p>
+            Simply use the Discord button on this website to join
+            the BRTX community.
+          </p>
+        </details>
+
+        <details class="reveal">
+          <summary>Who runs BRTX?</summary>
+          <p>
+            Batrix is the founder, 9ue5 is the developer,
+            and fr3on is the head admin.
+          </p>
+        </details>
 
       </div>
 
@@ -2385,51 +1376,52 @@
 
   </main>
 
-
-  <!-- =======================================================
-       FOOTER
-       ======================================================= -->
-
+  <!-- FOOTER -->
   <footer>
 
-    <div class="container">
+    <div class="footer-top">
 
-      <div class="footer-inner">
+      <div>
+        <a href="#home" class="logo">
+          <div class="logo-box"><span>B</span></div>
+          BRTX
+        </a>
 
-        <div class="footer-brand">
-          © 2026 VEXN ESPORTS
-        </div>
+        <p class="footer-text" style="margin-top:14px;">
+          A gaming community built around people,
+          games and good vibes.
+        </p>
+      </div>
 
-        <div class="footer-links">
+      <div class="footer-links">
+        <a href="#games">Games</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
 
-          <a href="#home">HOME</a>
-          <a href="#about">ABOUT</a>
-          <a href="#games">GAMES</a>
-          <a href="#roster">ROSTER</a>
-          <a href="#discord">DISCORD</a>
-
-        </div>
-
+        <a
+          href="https://discord.gg/VDbAZYQTVx"
+          target="_blank"
+          rel="noopener"
+        >
+          Discord ↗
+        </a>
       </div>
 
     </div>
 
+    <div class="copyright">
+      © 2026 BRTX Community. All rights reserved.
+    </div>
+
   </footer>
 
-
-  <!-- =======================================================
-       JAVASCRIPT
-       ======================================================= -->
-
   <script>
-
-    /* =========================================================
+    /* =========================
        CUSTOM CURSOR
-       ========================================================= */
+    ========================= */
 
-    const cursorDot = document.getElementById("cursorDot");
-    const cursorRing = document.getElementById("cursorRing");
-    const glow = document.getElementById("glow");
+    const cursor = document.querySelector(".cursor");
+    const ring = document.querySelector(".cursor-ring");
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -2437,114 +1429,85 @@
     let ringX = mouseX;
     let ringY = mouseY;
 
-    document.addEventListener("mousemove", (event) => {
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-
-      cursorDot.style.left = mouseX + "px";
-      cursorDot.style.top = mouseY + "px";
-
-      glow.style.left = mouseX + "px";
-      glow.style.top = mouseY + "px";
-
+      cursor.style.left = mouseX + "px";
+      cursor.style.top = mouseY + "px";
     });
 
-
     function animateCursor() {
-
       ringX += (mouseX - ringX) * 0.13;
       ringY += (mouseY - ringY) * 0.13;
 
-      cursorRing.style.left = ringX + "px";
-      cursorRing.style.top = ringY + "px";
+      ring.style.left = ringX + "px";
+      ring.style.top = ringY + "px";
 
       requestAnimationFrame(animateCursor);
-
     }
 
     animateCursor();
 
+    document.querySelectorAll("a, button, summary, .game-card, .person")
+      .forEach((element) => {
 
-    /* =========================================================
-       CURSOR HOVER
-       ========================================================= */
+        element.addEventListener("mouseenter", () => {
+          document.body.classList.add("cursor-hover");
+        });
 
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .game-card, .player, .value, .timeline-card"
-    );
+        element.addEventListener("mouseleave", () => {
+          document.body.classList.remove("cursor-hover");
+        });
 
-    interactiveElements.forEach((element) => {
-
-      element.addEventListener("mouseenter", () => {
-        document.body.classList.add("cursor-hover");
       });
 
-      element.addEventListener("mouseleave", () => {
-        document.body.classList.remove("cursor-hover");
-      });
 
-    });
+    /* =========================
+       SCROLL REVEALS
+    ========================= */
 
+    const revealElements = document.querySelectorAll(".reveal");
 
-    /* =========================================================
-       SCROLL REVEAL
-       ========================================================= */
-
-    const revealElements =
-      document.querySelectorAll(".reveal");
-
-    const revealObserver = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
 
         entries.forEach((entry) => {
 
           if (entry.isIntersecting) {
-
             entry.target.classList.add("visible");
-
-            revealObserver.unobserve(entry.target);
-
+            observer.unobserve(entry.target);
           }
 
         });
 
       },
       {
-        threshold: 0.12
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px"
       }
     );
 
-
     revealElements.forEach((element) => {
-      revealObserver.observe(element);
+      observer.observe(element);
     });
 
 
-    /* =========================================================
-       SMOOTH ANCHOR SCROLLING
-       ========================================================= */
+    /* =========================
+       SMOOTH ANCHOR SCROLL
+    ========================= */
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
       link.addEventListener("click", (event) => {
 
-        const targetId =
-          link.getAttribute("href");
+        const targetId = link.getAttribute("href");
 
-        if (
-          !targetId ||
-          targetId === "#"
-        ) {
-          return;
-        }
+        if (targetId === "#") return;
 
-        const target =
-          document.querySelector(targetId);
+        const target = document.querySelector(targetId);
 
-        if (!target) {
-          return;
-        }
+        if (!target) return;
 
         event.preventDefault();
 
@@ -2558,146 +1521,24 @@
     });
 
 
-    /* =========================================================
-       MOBILE MENU
-       ========================================================= */
+    /* =========================
+       SUBTLE HERO PARALLAX
+    ========================= */
 
-    const mobileMenu =
-      document.querySelector(".mobile-menu");
+    const heroCard = document.querySelector(".hero-card");
 
-    const navLinks =
-      document.querySelector(".nav-links");
+    window.addEventListener("scroll", () => {
 
-    mobileMenu.addEventListener("click", () => {
+      if (!heroCard) return;
 
-      const isOpen =
-        navLinks.style.display === "flex";
+      const scroll = window.scrollY;
 
-      if (isOpen) {
-
-        navLinks.style.display = "";
-
-      } else {
-
-        navLinks.style.display = "flex";
-
-        navLinks.style.position = "absolute";
-        navLinks.style.top = "72px";
-        navLinks.style.left = "0";
-        navLinks.style.right = "0";
-
-        navLinks.style.flexDirection = "column";
-        navLinks.style.alignItems = "stretch";
-
-        navLinks.style.padding = "20px";
-
-        navLinks.style.border =
-          "1px solid rgba(255,255,255,.09)";
-
-        navLinks.style.borderRadius = "18px";
-
-        navLinks.style.background =
-          "rgba(8,8,12,.96)";
-
-        navLinks.style.backdropFilter =
-          "blur(25px)";
-
+      if (scroll < window.innerHeight) {
+        heroCard.style.transform =
+          `translateY(${scroll * 0.08}px)`;
       }
 
     });
-
-
-    /* =========================================================
-       CLOSE MOBILE MENU AFTER CLICK
-       ========================================================= */
-
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-          if (window.innerWidth <= 900) {
-            navLinks.style.display = "";
-          }
-
-        });
-
-      });
-
-
-    /* =========================================================
-       PARALLAX GLOW
-       ========================================================= */
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        const scroll =
-          window.scrollY;
-
-        glow.style.transform =
-          `translate(-50%, -50%) translateY(${scroll * 0.08}px)`;
-
-      },
-      { passive: true }
-    );
-
-
-    /* =========================================================
-       CARD TILT
-       ========================================================= */
-
-    const tiltCards =
-      document.querySelectorAll(
-        ".game-card, .player, .value"
-      );
-
-    tiltCards.forEach((card) => {
-
-      card.addEventListener("mousemove", (event) => {
-
-        if (window.innerWidth <= 900) return;
-
-        const rect =
-          card.getBoundingClientRect();
-
-        const x =
-          event.clientX - rect.left;
-
-        const y =
-          event.clientY - rect.top;
-
-        const centerX =
-          rect.width / 2;
-
-        const centerY =
-          rect.height / 2;
-
-        const rotateX =
-          ((y - centerY) / centerY) * -2.5;
-
-        const rotateY =
-          ((x - centerX) / centerX) * 2.5;
-
-        card.style.transform =
-          `perspective(900px)
-           rotateX(${rotateX}deg)
-           rotateY(${rotateY}deg)
-           translateY(-8px)`;
-
-      });
-
-
-      card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "";
-
-      });
-
-    });
-
   </script>
 
 </body>
