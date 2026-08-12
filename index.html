@@ -1,1 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>VEXN — Esports</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #070707;
+    --card: #101010;
+    --card-hover: #151515;
+    --border: #242424;
+    --text: #fff;
+    --muted: #777;
+    --soft: #aaa;
+    --radius: 22px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% -10%, rgba(255,255,255,.08), transparent 35%),
+        radial-gradient(circle at 100% 50%, rgba(255,255,255,.035), transparent 30%);
+    z-index: -1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================= NAV ================= */
+
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1250px;
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    background: rgba(13,13,13,.78);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 18px;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    z-index: 1000;
+
+    transition: .35s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo-box {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    background: #151515;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-links a {
+    padding: 10px 14px;
+    border-radius: 10px;
+
+    color: #777;
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: .25s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+    background: #191919;
+}
+
+.nav-join {
+    padding: 11px 17px;
+
+    background: white;
+    color: black;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: .25s ease;
+}
+
+.nav-join:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,255,255,.12);
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: calc(100% - 40px);
+    max-width: 1250px;
+    margin: auto;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 780px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 150px 70px 90px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    background:
+        radial-gradient(circle at 75% 30%, rgba(255,255,255,.075), transparent 25%),
+        radial-gradient(circle at 80% 90%, rgba(255,255,255,.035), transparent 30%),
+        #0c0c0c;
+}
+
+.hero::before {
+    content: "VEXN";
+
+    position: absolute;
+    right: -55px;
+    bottom: -60px;
+
+    font-size: clamp(150px, 25vw, 340px);
+    font-weight: 800;
+    letter-spacing: -25px;
+
+    color: rgba(255,255,255,.025);
+
+    pointer-events: none;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+
+    opacity: .35;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 720px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 13px;
+
+    border: 1px solid #292929;
+    border-radius: 999px;
+
+    background: #111;
+
+    color: #888;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    margin-bottom: 28px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 0 12px rgba(255,255,255,.7);
+}
+
+.hero h1 {
+    font-size: clamp(65px, 10vw, 125px);
+    line-height: .82;
+
+    letter-spacing: -8px;
+
+    font-weight: 800;
+
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: #555;
+}
+
+.hero-description {
+    max-width: 560px;
+
+    color: #858585;
+
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 21px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button-primary {
+    background: white;
+    color: black;
+}
+
+.button-secondary {
+    background: #151515;
+    border: 1px solid #292929;
+    color: white;
+}
+
+.button-secondary:hover {
+    background: #1b1b1b;
+}
+
+/* ================= SCROLL INDICATOR ================= */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 35px;
+
+    background: linear-gradient(to bottom, #777, transparent);
+
+    animation: scrollLine 1.8s infinite ease-in-out;
+}
+
+@keyframes scrollLine {
+    0%,100% {
+        opacity: .3;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(8px);
+    }
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    padding-top: 110px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-label {
+    color: #555;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+}
+
+.section-description {
+    margin-top: 7px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    padding: 27px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    transition: .3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+    border-color: #333;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.stat-name {
+    margin-top: 7px;
+
+    color: #666;
+
+    font-size: 11px;
+}
+
+/* ================= TEAM CARDS ================= */
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
+
+.team-card {
+    min-height: 250px;
+
+    padding: 27px;
+
+    position: relative;
+    overflow: hidden;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        border-color .35s ease,
+        background .35s ease;
+}
+
+.team-card::after {
+    content: "";
+
+    position: absolute;
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    bottom: -90px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.035);
+
+    transition: .4s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-7px);
+    border-color: #373737;
+    background: var(--card-hover);
+}
+
+.team-card:hover::after {
+    transform: scale(1.5);
+}
+
+.team-number {
+    color: #555;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.team-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 30px 0 25px;
+
+    border-radius: 12px;
+
+    background: #171717;
+    border: 1px solid #292929;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.team-card h3 {
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.team-card p {
+    max-width: 300px;
+
+    color: #666;
+
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+/* ================= ROSTER ================= */
+
+.roster {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+}
+
+.player {
+    overflow: hidden;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    transition: .3s ease;
+}
+
+.player:hover {
+    transform: translateY(-6px);
+    border-color: #333;
+}
+
+.player-image {
+    height: 210px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(circle at 50% 35%, #292929, transparent 30%),
+        linear-gradient(145deg, #181818, #0d0d0d);
+
+    overflow: hidden;
+}
+
+.player-image::before {
+    content: "";
+
+    position: absolute;
+    width: 130px;
+    height: 130px;
+
+    bottom: -70px;
+
+    border-radius: 50%;
+
+    background: #292929;
+}
+
+.player-number {
+    position: relative;
+    z-index: 2;
+
+    color: #3a3a3a;
+
+    font-size: 65px;
+    font-weight: 800;
+
+    letter-spacing: -5px;
+}
+
+.player-info {
+    padding: 18px;
+}
+
+.player-name {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.player-role {
+    margin-top: 5px;
+
+    color: #666;
+
+    font-size: 10px;
+}
+
+/* ================= NEWS ================= */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 13px;
+}
+
+.news-card {
+    min-height: 230px;
+
+    padding: 27px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background:
+        radial-gradient(circle at 80% 20%, #252525, transparent 25%),
+        #101010;
+
+    transition: .3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: #333;
+}
+
+.news-tag {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+
+    padding: 6px 9px;
+
+    border: 1px solid #292929;
+    border-radius: 7px;
+
+    color: #777;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.news-card h3 {
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.news-card p {
+    color: #666;
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ================= CTA ================= */
+
+.cta {
+    margin-top: 110px;
+
+    padding: 60px 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 25px;
+
+    background:
+        radial-gradient(circle at 80% 50%, #242424, transparent 30%),
+        #101010;
+}
+
+.cta::after {
+    content: "VEXN";
+
+    position: absolute;
+    right: -20px;
+    bottom: -75px;
+
+    font-size: 150px;
+    font-weight: 800;
+
+    color: rgba(255,255,255,.025);
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta h2 {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+
+    margin-bottom: 8px;
+}
+
+.cta p {
+    color: #666;
+    font-size: 12px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    margin-top: 100px;
+
+    padding: 30px 0 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-top: 1px solid var(--border);
+
+    color: #555;
+
+    font-size: 10px;
+}
+
+.footer-logo {
+    color: #777;
+
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    transition: .2s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* ================= REVEAL ================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: .08s;
+}
+
+.delay-2 {
+    transition-delay: .16s;
+}
+
+.delay-3 {
+    transition-delay: .24s;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        width: calc(100% - 24px);
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 700px;
+        padding: 130px 35px 80px;
+    }
+
+    .hero h1 {
+        letter-spacing: -5px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roster {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .navbar {
+        top: 10px;
+        height: 62px;
+    }
+
+    .nav-join {
+        padding: 10px 13px;
+    }
+
+    .hero {
+        min-height: 650px;
+        padding: 120px 25px 70px;
+
+        border-radius: 22px;
+    }
+
+    .hero h1 {
+        font-size: 64px;
+        letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .stats,
+    .roster {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding-top: 80px;
+    }
+
+    .cta {
+        margin-top: 80px;
+
+        padding: 35px 25px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cta h2 {
+        font-size: 26px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="#home" class="logo">
+        <span class="logo-box">V</span>
+        VEXN
+    </a>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#teams">Teams</a>
+        <a href="#roster">Roster</a>
+        <a href="#news">News</a>
+    </div>
+
+    <a
+        href="https://discord.gg/bAzUKFhcvU"
+        target="_blank"
+        class="nav-join"
+    >
+        Join VEXN
+    </a>
+
+</nav>
+
+
+<main class="container">
+
+<!-- ================= HERO ================= -->
+
+<section class="hero reveal visible" id="home">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+
+        <div class="status">
+            <span class="status-dot"></span>
+            VEXN ESPORTS
+        </div>
+
+        <h1>
+            BUILT<br>
+            <span>TO WIN.</span>
+        </h1>
+
+        <p class="hero-description">
+            VEXN is a competitive esports organization built around
+            ambition, competition and community. We're here to create
+            something bigger than just a team.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#teams"
+                class="button button-primary"
+            >
+                Explore VEXN
+            </a>
+
+            <a
+                href="https://discord.gg/bAzUKFhcvU"
+                target="_blank"
+                class="button button-secondary"
+            >
+                Join our Discord
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+        SCROLL
+        <span class="scroll-line"></span>
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="section reveal" id="stats">
+
+    <div class="stats">
+
+        <div class="stat delay-1">
+            <div class="stat-number">01</div>
+            <div class="stat-name">ESPORTS ORGANIZATION</div>
+        </div>
+
+        <div class="stat delay-2">
+            <div class="stat-number">24/7</div>
+            <div class="stat-name">COMMUNITY</div>
+        </div>
+
+        <div class="stat delay-3">
+            <div class="stat-number">∞</div>
+            <div class="stat-name">POTENTIAL</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">2026</div>
+            <div class="stat-name">ESTABLISHED</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TEAMS ================= -->
+
+<section class="section reveal" id="teams">
+
+    <div class="section-heading">
+
+        <div class="section-label">01 / Competitive</div>
+
+        <div class="section-title">
+            Our Teams
+        </div>
+
+        <div class="section-description">
+            Different paths. One organization.
+        </div>
+
+    </div>
+
+    <div class="team-grid">
+
+        <article class="team-card">
+
+            <div class="team-number">01</div>
+
+            <div class="team-icon">VX</div>
+
+            <h3>VEXN Champions</h3>
+
+            <p>
+                Our top competitive division for players ready
+                to compete at the highest level.
+            </p>
+
+        </article>
+
+
+        <article class="team-card">
+
+            <div class="team-number">02</div>
+
+            <div class="team-icon">EL</div>
+
+            <h3>VEXN Elite</h3>
+
+            <p>
+                A competitive division focused on development,
+                teamwork and tournament performance.
+            </p>
+
+        </article>
+
+
+        <article class="team-card">
+
+            <div class="team-number">03</div>
+
+            <div class="team-icon">RS</div>
+
+            <h3>VEXN Rising</h3>
+
+            <p>
+                Developing upcoming talent and building the
+                future of VEXN.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ROSTER ================= -->
+
+<section class="section reveal" id="roster">
+
+    <div class="section-heading">
+
+        <div class="section-label">02 / Players</div>
+
+        <div class="section-title">
+            Featured Roster
+        </div>
+
+        <div class="section-description">
+            The people behind the competition.
+        </div>
+
+    </div>
+
+    <div class="roster">
+
+        <article class="player">
+
+            <div class="player-image">
+                <div class="player-number">01</div>
+            </div>
+
+            <div class="player-info">
+                <div class="player-name">PLAYER</div>
+                <div class="player-role">COMPETITIVE</div>
+            </div>
+
+        </article>
+
+
+        <article class="player">
+
+            <div class="player-image">
+                <div class="player-number">02</div>
+            </div>
+
+            <div class="player-info">
+                <div class="player-name">PLAYER</div>
+                <div class="player-role">COMPETITIVE</div>
+            </div>
+
+        </article>
+
+
+        <article class="player">
+
+            <div class="player-image">
+                <div class="player-number">03</div>
+            </div>
+
+            <div class="player-info">
+                <div class="player-name">PLAYER</div>
+                <div class="player-role">COMPETITIVE</div>
+            </div>
+
+        </article>
+
+
+        <article class="player">
+
+            <div class="player-image">
+                <div class="player-number">04</div>
+            </div>
+
+            <div class="player-info">
+                <div class="player-name">PLAYER</div>
+                <div class="player-role">COMPETITIVE</div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NEWS ================= -->
+
+<section class="section reveal" id="news">
+
+    <div class="section-heading">
+
+        <div class="section-label">03 / Updates</div>
+
+        <div class="section-title">
+            Latest from VEXN
+        </div>
+
+    </div>
+
+    <div class="news-grid">
+
+        <article class="news-card">
+
+            <span class="news-tag">ANNOUNCEMENT</span>
+
+            <h3>VEXN is here.</h3>
+
+            <p>
+                Welcome to the official home of VEXN Esports.
+            </p>
+
+        </article>
+
+
+        <article class="news-card">
+
+            <span class="news-tag">COMMUNITY</span>
+
+            <h3>Join us.</h3>
+
+            <p>
+                Connect with the VEXN community on Discord.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta reveal" id="join">
+
+    <div class="cta-content">
+
+        <h2>Ready to join VEXN?</h2>
+
+        <p>
+            Players, creators and staff — there's a place for you.
+        </p>
+
+    </div>
+
+    <a
+        href="https://discord.gg/bAzUKFhcvU"
+        target="_blank"
+        class="button button-primary"
+    >
+        Join Discord
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        VEXN ESPORTS
+    </div>
+
+    <div>
+        © 2026 VEXN. All rights reserved.
+    </div>
+
+    <div class="footer-links">
+
+        <a
+            href="https://discord.gg/bAzUKFhcvU"
+            target="_blank"
+        >
+            Discord
+        </a>
+
+        <a href="#home">
+            Back to top ↑
+        </a>
+
+    </div>
+
+</footer>
+
+</main>
+
+
+<!-- ================= SCROLL ANIMATION ================= -->
+
+<script>
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.12
+    }
+);
+
+elements.forEach((element) => {
+    observer.observe(element);
+});
+
+</script>
+
+</body>
+</html>
